@@ -1,7 +1,11 @@
 import { Request, Response } from 'express'
+
+import { Pet } from '../models/pet'
 import { createMenuObject } from '../helpers/createMenuObject'
 
 export const home = (req: Request, res: Response) => {
+  let list = Pet.getAll()
+
   res.render('pages/page', {
     // Na minha opinião, um modo mais fácil de setar o item de menu ativo seria enviar apenas uma propriedade com o nome do item. 'Ex: dog: true'. Ou um objeto 'menu' com apenas uma propriedade apenas, sendo esta o nome do item de menu ativo (como feito no item comentado abaixo), ao invés de um objeto inteiro com todos os itens de menu.
     // Mas resolvi deixar esse helper (createMenuObject) como exemplo de resolução em Typescript, já que implementando assim é possível restringir as entradas às declaradas no type.
@@ -11,39 +15,49 @@ export const home = (req: Request, res: Response) => {
     banner: {
       title: 'Todos os animais',
       background: 'allanimals.jpg'
-    }
+    },
+    list
   })
 }
 
 export const dogs = (req: Request, res: Response) => {
+  let list = Pet.getFromType('dog')
+
   res.render('pages/page', {
     // menu: { dog: true },
     menu: createMenuObject('dog'),
     banner: {
       title: 'Cachorros',
       background: 'banner_dog.jpg'
-    }
+    },
+    list
   })
 }
 
 export const cats = (req: Request, res: Response) => {
+  let list = Pet.getFromType('cat')
+
   res.render('pages/page', {
     // menu: { cat: true },
     menu: createMenuObject('cat'),
     banner: {
       title: 'Gatos',
       background: 'banner_cat.jpg'
-    }
+    },
+    list
   })
 }
 
 export const fishes = (req: Request, res: Response) => {
+  let list = Pet.getFromType('fish')
+
   res.render('pages/page', {
     // menu: { fish: true },
     menu: createMenuObject('fish'),
     banner: {
       title: 'Peixes',
       background: 'banner_fish.jpg'
-    }
+    },
+    list
   })
 }
