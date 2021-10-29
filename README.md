@@ -1,4 +1,6 @@
-# B7Web-nodets-canil
+# Curso B7Web - Módulo Node.js + Typescript
+
+## Projeto Site Adoção de Animais
 
 Projeto do Curso B7Web - Módulo Node.js + Typescript
 
